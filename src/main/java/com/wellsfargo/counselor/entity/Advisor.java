@@ -1,17 +1,14 @@
 package com.wellsfargo.counselor.entity;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "advisors")
 public class Advisor {
 
     @Id
-    @GeneratedValue()
-    private long advisorId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long advisorId;
 
     @Column(nullable = false)
     private String firstName;
@@ -25,11 +22,10 @@ public class Advisor {
     @Column(nullable = false)
     private String phone;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     protected Advisor() {
-
     }
 
     public Advisor(String firstName, String lastName, String address, String phone, String email) {
